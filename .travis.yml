@@ -1,15 +1,9 @@
-language: java, node_js
-notifications:
-  email:
-    recipients:
-      - pacman@T-Mobile.com
-    on_success: never # default: change
-    on_failure: always # default: always
-node_js:
-- "node"
-
-# If your build needs more advanced behavior, see detailed Travis CI instructions:
-# https://docs.travis-ci.com/user/languages/javascript-with-nodejs/
-
-after_success:
-  - bash <(curl -s https://copilot.blackducksoftware.com/ci/travis/scripts/upload)
+matrix:
+  include:
+  - language: java
+    after_success:
+      - bash <(curl -s https://copilot.blackducksoftware.com/ci/travis/scripts/upload)
+  - language: node_js:
+    node_js:
+    after_success:
+      - bash <(curl -s https://copilot.blackducksoftware.com/ci/travis/scripts/upload)
